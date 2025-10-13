@@ -1,0 +1,10 @@
+ini systeme
+
+modify le script precedent pour quil affiche que linversion que le php utilisé
+afficher le type de navigateur de client ainsi que sans adress IP
+
+ex2:
+declarer une variable prenom et faire afficher bonjour suivi de la valeur de cette variable
+afficher le prenom en majus
+aff le prenom en minus
+aff le nbr de carac de variable prenom
