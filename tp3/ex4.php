@@ -1,17 +1,14 @@
 <?php
-// 1. Créer un tableau d'entiers de 1 à 63
 $entiers = range(1, 63);
 
-// 2. Créer un tableau variant de 0 à 6.3 avec pas de 0.1
 $X = [];
 foreach ($entiers as $val) {
-    $X[] = $val / 10; // Diviser par 10 pour avoir 0.1, 0.2, ..., 6.3
+    $X[] = $val / 10; 
 }
 
-// 3. Créer un tableau associatif avec sin(X)
 $sinX = [];
 foreach ($X as $x) {
-    $sinX[$x] = sin($x); // sin() prend la valeur en radians
+    $sinX[$x] = sin($x); 
 }
 ?>
 

@@ -26,7 +26,6 @@ $evenements = [
 <body>
     <p>Date actuelle : <?php echo date("d/m/Y"); ?></p>
 
-    <!-- 3. Afficher chaque événement sous forme de tableau HTML -->
     <table border="1" align="center">
         <tr>
             <th>Nom de l'événement</th>
@@ -39,7 +38,6 @@ $evenements = [
         ?>
     </table>
 
-    <!-- 4. Afficher le tableau brut avec print_r -->
     <pre>
 <?php print_r($evenements); ?>
     </pre>

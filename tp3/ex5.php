@@ -1,5 +1,4 @@
 <?php
-// Tableau des mails
 $mails = array(
     "php5@free.com",
     " jean556@yahoo.fr ",
@@ -9,36 +8,31 @@ $mails = array(
     "macafi@yahoo.fr "
 );
 
-// 1. Parcours et affichage des mails (nettoyés des espaces)
 echo "<h3>Liste des mails :</h3>";
 foreach ($mails as $mail) {
     echo trim($mail) . "<br>";
 }
 
-// 2. Extraire les noms des hébergeurs
 $hebergeurs = [];
 foreach ($mails as $mail) {
-    $mail = trim($mail); // enlever espaces
-    $parts = explode("@", $mail); // découper à '@'
+    $mail = trim($mail);
+    $parts = explode("@", $mail);
     if (isset($parts[1])) {
-        $hebergeurs[] = strtolower($parts[1]); // tout en minuscule
+        $hebergeurs[] = strtolower($parts[1]);
     }
 }
 
-// Afficher les hébergeurs
 echo "<h3>Hébergeurs :</h3>";
 foreach ($hebergeurs as $hebergeur) {
     echo $hebergeur . "<br>";
 }
 
-// 3. Calculer la fréquence des hébergeurs
-$freq = array_count_values($hebergeurs); // clé = hébergeur, valeur = fréquence
+$freq = array_count_values($hebergeurs);
 
-// Identifier le max et min pour le style
 $maxFreq = max($freq);
 $minFreq = min($freq);
 
-// Trier par ordre alphabétique des clés
+// Trier 
 ksort($freq);
 ?>
 
