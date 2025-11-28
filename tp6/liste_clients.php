@@ -27,6 +27,8 @@ $result = $connexion->query("SELECT * FROM carnet");
             <th>Prénom</th>
             <th>Naissance</th>
             <th>Ville</th>
+            <th>Adresse</th>
+            <th>Code Postal</th>
         </tr>
 
         <?php foreach ($result as $row) { ?>
@@ -36,6 +38,8 @@ $result = $connexion->query("SELECT * FROM carnet");
                 <td><?= $row["PRENOM"] ?></td>
                 <td><?= $row["NAISSANCE"] ?></td>
                 <td><?= $row["VILLE"] ?></td>
+                <td><?= $row["ADRESSE"] ?></td>
+                <td><?= $row["POSTAL"] ?></td>
             </tr>
         <?php } ?>
 

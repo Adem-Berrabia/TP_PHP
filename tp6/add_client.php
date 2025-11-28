@@ -2,7 +2,7 @@
 require("connect.php");
 
 // Vérification des données
-if (empty($_POST["nom"]) || empty($_POST["prenom"]) || empty($_POST["naissance"]) || empty($_POST["ville"])) {
+if (empty($_POST["nom"]) || empty($_POST["prenom"]) || empty($_POST["naissance"]) || empty($_POST["ville"]) || empty($_POST["adresse"]) || empty($_POST["postal"])) {
     echo "<script>alert('⚠ Veuillez remplir tous les champs'); window.history.back();</script>";
     exit();
 }
@@ -11,9 +11,16 @@ if (empty($_POST["nom"]) || empty($_POST["prenom"]) || empty($_POST["naissance"]
 $dsn = "mysql:dbname=" . BASE . ";host=" . SERVEUR;
 $connexion = new PDO($dsn, USER, PASSWSD);
 
-// Insertion dans la table carnet
-$sql = "INSERT INTO carnet (NOM, PRENOM, NAISSANCE, VILLE) VALUES (?, ?, ?, ?)";
+// Insertion dans la table carnet avec adresse et code postal
+$sql = "INSERT INTO carnet (NOM, PRENOM, NAISSANCE, VILLE, ADRESSE, POSTAL) VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $connexion->prepare($sql);
-$stmt->execute([$_POST["nom"], $_POST["prenom"], $_POST["naissance"], $_POST["ville"]]);
+$stmt->execute([
+    $_POST["nom"],
+    $_POST["prenom"],
+    $_POST["naissance"],
+    $_POST["ville"],
+    $_POST["adresse"],
+    $_POST["postal"]
+]);
 
 echo "<script>alert('✔ Client enregistré avec succès !'); window.location='liste_clients.php';</script>";

@@ -22,43 +22,6 @@ $result = $connexion->query($sql);
     <link rel="stylesheet" href="style.css">
     <title>Liste du Carnet</title>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 20px;
-    }
-
-    h2 {
-        text-align: center;
-        color: #333;
-    }
-
-    table {
-        width: 60%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        background: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    th,
-    td {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
-    }
-
-    th {
-        background-color: #007BFF;
-        color: white;
-    }
-
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-</style>
 
 <body>
 
