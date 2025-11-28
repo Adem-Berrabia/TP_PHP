@@ -18,10 +18,11 @@
         name="prenom"
         id="prenom"
         placeholder="Entrez le prénom"
+        required
       />
 
       <label for="naissance">Date de naissance :</label>
-      <input type="date" name="naissance" id="naissance" />
+      <input type="date" name="naissance" id="naissance" required />
 
       <label for="ville">Ville :</label>
       <input
@@ -29,12 +30,13 @@
         name="ville"
         id="ville"
         placeholder="Entrez la ville"
+        required
       />
       <label for="adresse">Adresse</label>
       <input type="text" name="adresse" id="adresse" required />
 
       <label for="postal">Code Postal</label>
-      <input type="text" name="postal" id="postal" required />
+      <input type="text" name="postal" id="postal" required autocomplete />
 
       <button type="submit">Enregistrer</button>
 
