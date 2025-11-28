@@ -1,26 +1,33 @@
 <?php
 require("connect.php");
 
-// Vérification des données
-if (empty($_POST["nom"]) || empty($_POST["prenom"]) || empty($_POST["naissance"]) || empty($_POST["ville"]) || empty($_POST["adresse"]) || empty($_POST["postal"])) {
+// Sanitize POST data
+$nom = htmlspecialchars($_POST["nom"] ?? '');
+$prenom = htmlspecialchars($_POST["prenom"] ?? '');
+$naissance = $_POST["naissance"] ?? '';
+$ville = htmlspecialchars($_POST["ville"] ?? '');
+$adresse = htmlspecialchars($_POST["adresse"] ?? '');
+$postal = htmlspecialchars($_POST["postal"] ?? '');
+
+// Validate required fields
+if (!$nom || !$prenom || !$naissance || !$ville || !$adresse || !$postal) {
     echo "<script>alert('⚠ Veuillez remplir tous les champs'); window.history.back();</script>";
     exit();
 }
 
-// Connexion BD
-$dsn = "mysql:dbname=" . BASE . ";host=" . SERVEUR;
-$connexion = new PDO($dsn, USER, PASSWSD);
+// Validate date
+if (!strtotime($naissance)) {
+    echo "<script>alert('⚠ Date de naissance invalide'); window.history.back();</script>";
+    exit();
+}
 
-// Insertion dans la table carnet avec adresse et code postal
-$sql = "INSERT INTO carnet (NOM, PRENOM, NAISSANCE, VILLE, ADRESSE, POSTAL) VALUES (?, ?, ?, ?, ?, ?)";
-$stmt = $connexion->prepare($sql);
-$stmt->execute([
-    $_POST["nom"],
-    $_POST["prenom"],
-    $_POST["naissance"],
-    $_POST["ville"],
-    $_POST["adresse"],
-    $_POST["postal"]
-]);
+// Insert into database
+try {
+    $sql = "INSERT INTO carnet (NOM, PRENOM, NAISSANCE, VILLE, ADRESSE, POSTAL) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $connexion->prepare($sql);
+    $stmt->execute([$nom, $prenom, $naissance, $ville, $adresse, $postal]);
 
-echo "<script>alert('✔ Client enregistré avec succès !'); window.location='liste_clients.php';</script>";
+    echo "<script>alert('✔ Client enregistré avec succès !'); window.location='liste_clients.php';</script>";
+} catch (PDOException $e) {
+    echo "<script>alert('❌ Erreur lors de l\\'enregistrement : " . $e->getMessage() . "'); window.history.back();</script>";
+}
