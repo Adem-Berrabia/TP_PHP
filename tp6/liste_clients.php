@@ -1,10 +1,11 @@
 <?php
 require("connect.php");
 
-$dsn = "mysql:dbname=" . BASE . ";host=" . SERVEUR;
-$connexion = new PDO($dsn, USER, PASSWSD);
-
-$result = $connexion->query("SELECT * FROM carnet");
+try {
+    $result = $connexion->query("SELECT * FROM carnet");
+} catch (PDOException $e) {
+    die("Erreur lors de la récupération des clients : " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,28 +22,30 @@ $result = $connexion->query("SELECT * FROM carnet");
     <h2 class="table-title">📄 Liste des Clients</h2>
 
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Naissance</th>
-            <th>Ville</th>
-            <th>Adresse</th>
-            <th>Code Postal</th>
-        </tr>
-
-        <?php foreach ($result as $row) { ?>
+        <thead>
             <tr>
-                <td><?= $row["ID"] ?></td>
-                <td><?= $row["NOM"] ?></td>
-                <td><?= $row["PRENOM"] ?></td>
-                <td><?= $row["NAISSANCE"] ?></td>
-                <td><?= $row["VILLE"] ?></td>
-                <td><?= $row["ADRESSE"] ?></td>
-                <td><?= $row["POSTAL"] ?></td>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Naissance</th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
             </tr>
-        <?php } ?>
-
+        </thead>
+        <tbody>
+            <?php foreach ($result as $row): ?>
+                <tr>
+                    <td><?= htmlspecialchars($row["ID"]) ?></td>
+                    <td><?= htmlspecialchars($row["NOM"]) ?></td>
+                    <td><?= htmlspecialchars($row["PRENOM"]) ?></td>
+                    <td><?= htmlspecialchars($row["NAISSANCE"]) ?></td>
+                    <td><?= htmlspecialchars($row["VILLE"]) ?></td>
+                    <td><?= htmlspecialchars($row["ADRESSE"]) ?></td>
+                    <td><?= htmlspecialchars($row["POSTAL"]) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
     </table>
 
     <a href="form.html" class="add-client-btn">➕ Ajouter un autre client</a>
