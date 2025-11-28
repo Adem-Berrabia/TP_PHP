@@ -2,33 +2,38 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Adresse Client</title>
+    <title>Formulaire Client</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h2>Formulaire Client</h2>
-
     <form action="add_client.php" method="POST">
-      <fieldset>
-        <legend>Adresse client</legend>
+      <h2>Ajouter un Client</h2>
 
-        <label>Nom :</label><br />
-        <input type="text" name="nom" /><br /><br />
+      <label for="nom">Nom :</label>
+      <input type="text" name="nom" id="nom" placeholder="Entrez le nom" />
 
-        <label>Prénom :</label><br />
-        <input type="text" name="prenom" /><br /><br />
+      <label for="prenom">Prénom :</label>
+      <input
+        type="text"
+        name="prenom"
+        id="prenom"
+        placeholder="Entrez le prénom"
+      />
 
-        <label>Date de naissance :</label><br />
-        <input type="date" name="naissance" /><br /><br />
+      <label for="naissance">Date de naissance :</label>
+      <input type="date" name="naissance" id="naissance" />
 
-        <label>Ville :</label><br />
-        <input type="text" name="ville" /><br /><br />
+      <label for="ville">Ville :</label>
+      <input
+        type="text"
+        name="ville"
+        id="ville"
+        placeholder="Entrez la ville"
+      />
 
-        <button type="submit">Enregistrer</button>
-      </fieldset>
+      <button type="submit">Enregistrer</button>
+
+      <a href="liste_clients.php">📄 Voir la liste des clients</a>
     </form>
-
-    <br />
-    <a href="liste_clients.php">📄 Voir la liste des clients</a>
   </body>
 </html>
